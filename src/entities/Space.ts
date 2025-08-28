@@ -4,18 +4,18 @@ import { Booking } from "./Booking";
 
 @Entity()
 export class Space {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ nullable: true })
-  gla: boolean;
+  gla!: boolean;
 
   @ManyToOne(() => Venue, venue => venue.spaces)
-  venue: Venue;
+  venue!: Venue;
 
   @OneToMany(() => Booking, booking => booking.space)
-  bookings: Booking[];
+  bookings!: Booking[];
 }

@@ -4,13 +4,16 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npm run copy-openapi",
+    "copy-openapi": "mkdir dist\\openapi 2>nul & copy src\\openapi\\openapi.yaml dist\\openapi\\openapi.yaml",
     "start": "node dist/index.js",
     "seed": "ts-node seeds/seedRoles.ts"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "form-data": "^4.0.4",
     "pg": "^8.11.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.6.3",

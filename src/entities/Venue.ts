@@ -5,18 +5,18 @@ import { Space } from "./Space";
 @Entity()
 @Unique(["name", "owner"])
 export class Venue {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  location: string;
+  location!: string;
 
   @ManyToOne(() => User, user => user.venues)
-  owner: User;
+  owner!: User;
 
   @OneToMany(() => Space, space => space.venue)
-  spaces: Space[];
+  spaces!: Space[];
 }

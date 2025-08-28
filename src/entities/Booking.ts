@@ -6,15 +6,15 @@ import { Event } from "./Event";
 @Entity()
 @Unique(["space", "event"])
 export class Booking {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @ManyToOne(() => User, user => user.bookings)
-  vendor: User;
+  vendor!: User;
 
   @ManyToOne(() => Space, space => space.bookings)
-  space: Space;
+  space!: Space;
 
   @ManyToOne(() => Event, event => event.bookings)
-  event: Event;
+  event!: Event;
 }

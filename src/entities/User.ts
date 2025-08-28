@@ -5,24 +5,24 @@ import { Booking } from "./Booking";
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @Column()
-  password: string;
+  password!: string;
 
   @ManyToOne(() => Role, role => role.users)
-  role: Role;
+  role!: Role;
 
   @OneToMany(() => Venue, venue => venue.owner)
-  venues: Venue[];
+  venues!: Venue[];
 
   @OneToMany(() => Booking, booking => booking.vendor)
-  bookings: Booking[];
+  bookings!: Booking[];
 }

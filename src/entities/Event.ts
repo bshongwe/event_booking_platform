@@ -6,21 +6,21 @@ import { Booking } from "./Booking";
 @Entity()
 @Unique(["name", "date", "venue"])
 export class Event {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column("date")
-  date: string;
+  date!: string;
 
-  @ManyToOne(() => User, user => user.id)
-  organiser: User;
+  @ManyToOne(() => User, user => user.bookings)
+  organiser!: User;
 
-  @ManyToOne(() => Venue, venue => venue.id)
-  venue: Venue;
+  @ManyToOne(() => Venue, venue => venue.spaces)
+  venue!: Venue;
 
   @OneToMany(() => Booking, booking => booking.event)
-  bookings: Booking[];
+  bookings!: Booking[];
 }
