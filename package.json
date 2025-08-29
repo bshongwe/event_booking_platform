@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc && npm run copy-openapi",
-    "copy-openapi": "mkdir dist\\openapi 2>nul & copy src\\openapi\\openapi.yaml dist\\openapi\\openapi.yaml",
-    "start": "node dist/index.js",
+    "copy-openapi": "mkdir dist\\src\\openapi 2>nul & copy src\\openapi\\openapi.yaml dist\\src\\openapi\\openapi.yaml",
+    "start": "node dist/src/index.js",
     "seed": "ts-node seeds/seedRoles.ts"
   },
   "dependencies": {
