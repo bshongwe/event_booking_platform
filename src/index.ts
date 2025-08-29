@@ -10,9 +10,19 @@ app.use(express.json());
 
 setupSwagger(app);
 
-// TODO: add routes here
-// app.use("/api/users", userRoutes);
-// app.use("/api/venues", venueRoutes);
+import userRoutes from "./routes/userRoutes";
+import venueRoutes from "./routes/venueRoutes";
+import eventRoutes from "./routes/eventRoutes";
+import bookingRoutes from "./routes/bookingRoutes";
+import spaceRoutes from "./routes/spaceRoutes";
+import roleRoutes from "./routes/roleRoutes";
+
+app.use("/api/users", userRoutes);
+app.use("/api/venues", venueRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/spaces", spaceRoutes);
+app.use("/api/roles", roleRoutes);
 
 AppDataSource.initialize().then(() => {
   console.log("Database connected");
