@@ -1,5 +1,8 @@
 import "reflect-metadata";
 import express from "express";
+import helmet from "helmet";
+import cors from "cors";
+import { body, validationResult } from "express-validator";
 import { AppDataSource } from "./config/data-source";
 import * as dotenv from "dotenv";
 import { setupSwagger } from "./swagger";
@@ -7,6 +10,23 @@ import { setupSwagger } from "./swagger";
 dotenv.config();
 const app = express();
 app.use(express.json());
+
+// Security: Set HTTP headers
+app.use(helmet());
+
+// Security: Configure CORS
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+// Example input validation middleware (expand per route as needed)
+app.use((req, res, next) => {
+  // This is a placeholder for validation logic
+  // Use express-validator in your route handlers for real validation
+  next();
+});
 
 setupSwagger(app);
 
