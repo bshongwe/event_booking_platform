@@ -1,7 +1,14 @@
 import { Request, Response } from "express";
+import { AppDataSource } from "../config/data-source";
+import { Role } from "../entities/Role";
 
-export const getRoles = (req: Request, res: Response) => {
-  res.json({ message: "Get all roles" });
+export const getRoles = async (req: Request, res: Response) => {
+  try {
+    const roles = await AppDataSource.manager.find(Role);
+    res.json(roles);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching roles", error: err });
+  }
 };
 
 export const getRole = (req: Request, res: Response) => {
