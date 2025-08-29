@@ -10,13 +10,17 @@
     "seed": "ts-node seeds/seedRoles.ts"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "axios": "^1.11.0",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.2.1",
     "form-data": "^4.0.4",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.6.3",
