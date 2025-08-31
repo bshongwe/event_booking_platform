@@ -26,6 +26,7 @@ export const getUsers = (req: Request, res: Response) => {
     order: { [sortField]: sortOrder },
     skip,
     take: limit,
+    relations: ["role"], // Eager load role to avoid N+1 queries
   }).then(([users, total]) => {
     // Remove password field from each user
     const safeUsers = users.map(({ password, ...rest }) => rest);

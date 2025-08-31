@@ -23,8 +23,12 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: false,
+  logging: true, // Enable query logging for analysis
   entities: [User, Role, Venue, Space, Event, Booking],
   migrations: ["migrations/*.ts"],
   subscribers: [],
+  extra: {
+    max: 10, // Maximum number of connections in pool
+    min: 2   // Minimum number of connections in pool
+  },
 });

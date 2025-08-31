@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Index } from "typeorm";
 import { Role } from "./Role";
 import { Venue } from "./Venue";
 import { Booking } from "./Booking";
@@ -11,6 +11,7 @@ export class User {
   @Column()
   name!: string;
 
+  @Index(["email"])
   @Column({ unique: true })
   email!: string;
 

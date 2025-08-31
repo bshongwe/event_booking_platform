@@ -1,7 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Index } from "typeorm";
 import { User } from "./User";
 
 @Entity()
+@Index(["name"])
 export class Role {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
