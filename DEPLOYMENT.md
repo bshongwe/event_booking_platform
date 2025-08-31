@@ -52,6 +52,12 @@ Use Nginx or Apache to route traffic and handle SSL:
 - Set up firewalls and access controls
 - Regularly update dependencies
 
+## Performance Improvements
+- Gzip compression is enabled for all API responses
+- Database connection pooling is configured (max 10, min 2)
+- Query logging is enabled for analysis
+- Database indexes added for faster queries on key columns
+
 ## Example Docker Compose
 ```yaml
 version: '3.8'

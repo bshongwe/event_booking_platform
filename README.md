@@ -8,6 +8,12 @@ A TypeScript-based platform for managing events, venues, spaces, bookings, and u
 - User authentication and roles
 - Booking system
 - RESTful API with Swagger documentation
+- Pagination, filtering, and sorting for list endpoints
+- Gzip compression for faster data transfer
+- Connection pooling for efficient database access
+- Query logging for performance analysis
+- Database indexes for faster queries
+- Security: Passwords are never exposed in API responses
 
 ## Project Structure
 ```mermaid
