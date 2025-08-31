@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+
 import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import FormData from 'form-data';
@@ -12,6 +13,14 @@ import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
+
+// Relevant models for API typing and usage
+import { User } from '../../entities/User';
+import { Role } from '../../entities/Role';
+import { Venue } from '../../entities/Venue';
+import { Space } from '../../entities/Space';
+import { Event } from '../../entities/Event';
+import { Booking } from '../../entities/Booking';
 
 export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
     return value !== undefined && value !== null;
