@@ -9,6 +9,9 @@ import { setupSwagger } from "./swagger";
 
 dotenv.config();
 const app = express();
+
+import compression from "compression";
+app.use(compression());
 app.use(express.json());
 
 // Security: Set HTTP headers

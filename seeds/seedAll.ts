@@ -29,6 +29,7 @@ const seedAll = async () => {
 
   // Seed Users
   const userRepo = AppDataSource.getRepository(User);
+  const bcrypt = require('bcryptjs');
   const usersData = [
     { name: "Alice", email: "alice@example.com", password: "password1", role: roleEntities[0] },
     { name: "Bob", email: "bob@example.com", password: "password2", role: roleEntities[1] },
@@ -37,8 +38,14 @@ const seedAll = async () => {
   const userEntities = [];
   for (const user of usersData) {
     let userEntity = await userRepo.findOneBy({ email: user.email });
+    const hashedPassword = bcrypt.hashSync(user.password, 10);
     if (!userEntity) {
-      userEntity = userRepo.create(user);
+      userEntity = userRepo.create({ ...user, password: hashedPassword });
+      await userRepo.save(userEntity);
+    } else {
+      userEntity.name = user.name;
+      userEntity.password = hashedPassword;
+      userEntity.role = user.role;
       await userRepo.save(userEntity);
     }
     userEntities.push(userEntity);

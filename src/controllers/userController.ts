@@ -5,7 +5,40 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const getUsers = (req: Request, res: Response) => {
-  res.json({ message: "Get all users" });
+  // Pagination
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 10;
+  const skip = (page - 1) * limit;
+
+  // Filtering (by name or email)
+  const name = req.query.name as string | undefined;
+  const email = req.query.email as string | undefined;
+  const where: any = {};
+  if (name) where.name = name;
+  if (email) where.email = email;
+
+  // Sorting
+  const sortField = (req.query.sortField as string) || "id";
+  const sortOrder = (req.query.sortOrder as string) === "desc" ? "DESC" : "ASC";
+
+  AppDataSource.getRepository(User).findAndCount({
+    where,
+    order: { [sortField]: sortOrder },
+    skip,
+    take: limit,
+  }).then(([users, total]) => {
+    // Remove password field from each user
+    const safeUsers = users.map(({ password, ...rest }) => rest);
+    res.json({
+      data: safeUsers,
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+    });
+  }).catch(err => {
+    res.status(500).json({ message: "Error fetching users", error: err });
+  });
 };
 
 export const getUser = (req: Request, res: Response) => {
