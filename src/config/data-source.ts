@@ -1,3 +1,8 @@
+/**
+ * TypeORM DataSource configuration for the Event Booking Platform.
+ * Loads entities, connects to PostgreSQL using environment variables, and enables migrations.
+ * Usage: Imported by application and seed scripts for database access.
+ */
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../entities/User";

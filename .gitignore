@@ -34,7 +34,7 @@ docker-compose.yml
 .dockerignore
 
 # Seeds and generated files
-seeds/
+# seeds/
 
 # OpenAPI
 src/openapi/openapi.yaml
