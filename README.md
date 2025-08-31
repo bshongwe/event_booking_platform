@@ -64,5 +64,23 @@ classDiagram
 ## API Documentation
 - See `src/swagger.ts` and `src/openapi/openapi.yaml` for API docs.
 
+## API Dataflow
+```mermaid
+sequenceDiagram
+  participant Client
+  participant API
+  participant Controller
+  participant Service
+  participant Entity
+  Client->>API: Sends HTTP request
+  API->>Controller: Routes request
+  Controller->>Service: Business logic
+  Service->>Entity: Database access
+  Entity-->>Service: Returns data
+  Service-->>Controller: Returns result
+  Controller-->>API: Sends response
+  API-->>Client: Returns response
+```
+
 ## License
 This project is licensed under the [MIT License](./LICENSE).
